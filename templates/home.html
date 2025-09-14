@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <title>Loan Prediction</title>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-gray-900 shadow-md">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2"
+          class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl font-bold tracking-wide">Loan Prediction</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a href="/" class="mr-5 hover:text-indigo-400 transition">Home</a>
+        <a href="/about" class="mr-5 hover:text-indigo-400 transition">About</a>
+        <a href="/predict" class="mr-5 hover:text-indigo-400 transition">Prediction</a>
+        <a href="https://github.com/Vishal120703/Blog_Web" target="_blank"
+          class="mr-5 hover:text-indigo-400 transition">Github</a>
+      </nav>
+      <button
+        class="ml-4 inline-flex items-center bg-indigo-600 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-700 rounded text-white text-sm shadow">
+        Get Started
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="text-gray-200 bg-gray-900 body-font">
+    <div class="container mx-auto flex px-5 py-20 md:flex-row flex-col items-center">
+      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <img class="object-cover object-center rounded-lg shadow-lg" alt="hero" src="/static/Untitled design.png">
+      </div>
+      <div class="lg:flex-grow md:w-1/2 lg:pl-20 md:pl-12 flex flex-col md:items-start md:text-left items-center text-center">
+        <h1 class="title-font sm:text-5xl text-3xl mb-6 font-extrabold text-white leading-tight">
+          Loan Approval <br class="hidden lg:inline-block">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Prediction System</span>
+        </h1>
+        <p class="mb-8 leading-relaxed text-gray-400 max-w-lg">
+          Predict your loan approval chances instantly. Enter details and get accurate predictions powered by machine learning.
+        </p>
+        <div class="flex justify-center">
+          <a href="https://github.com/Vishal120703/Blog_Web" target="_blank"
+            class="inline-flex text-white bg-indigo-600 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-700 rounded-lg text-lg shadow">
+            Github
+          </a>
+          <a href="#" class="ml-4 inline-flex text-gray-300 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded-lg text-lg">
+            Video
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="text-gray-400 bg-gray-900 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-wrap w-full mb-16 flex-col items-center text-center">
+        <h1 class="sm:text-4xl text-3xl font-bold title-font mb-4 text-white">Features</h1>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="border border-gray-700 p-6 rounded-lg hover:shadow-xl hover:border-indigo-500 transition">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+            🚀
+          </div>
+          <h2 class="text-lg text-white font-semibold mb-2">Easy to use</h2>
+          <p>Just enter your details and predict your loan approval instantly.</p>
+        </div>
+        <div class="border border-gray-700 p-6 rounded-lg hover:shadow-xl hover:border-indigo-500 transition">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+            🔢
+          </div>
+          <h2 class="text-lg text-white font-semibold mb-2">Numerical Inputs</h2>
+          <p>Enter numerical values for features for accurate prediction.</p>
+        </div>
+        <div class="border border-gray-700 p-6 rounded-lg hover:shadow-xl hover:border-indigo-500 transition">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+            🎯
+          </div>
+          <h2 class="text-lg text-white font-semibold mb-2">Accuracy</h2>
+          <p>Uses decision tree models for high accuracy with low error rates.</p>
+        </div>
+        <div class="border border-gray-700 p-6 rounded-lg hover:shadow-xl hover:border-indigo-500 transition">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+            🧠
+          </div>
+          <h2 class="text-lg text-white font-semibold mb-2">ML Model</h2>
+          <p>Tested on various models, final version uses Decision Tree.</p>
+        </div>
+        <div class="border border-gray-700 p-6 rounded-lg hover:shadow-xl hover:border-indigo-500 transition">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+            ⚡
+          </div>
+          <h2 class="text-lg text-white font-semibold mb-2">Fast</h2>
+          <p>Get predictions instantly with an optimized backend.</p>
+        </div>
+        <div class="border border-gray-700 p-6 rounded-lg hover:shadow-xl hover:border-indigo-500 transition">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+            🔒
+          </div>
+          <h2 class="text-lg text-white font-semibold mb-2">Secure</h2>
+          <p>Your data is safe and processed securely without leaks.</p>
+        </div>
+      </div>
+      <div class="flex justify-center mt-16">
+        <button
+          class="text-white bg-indigo-600 border-0 py-3 px-10 focus:outline-none hover:bg-indigo-700 rounded-lg text-lg shadow">
+          <a href="/predict">Try Prediction</a>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 body-font">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <span class="ml-3 text-xl">Loan Prediction</span>
+      </a>
+      <p class="text-sm text-gray-400 sm:ml-6 sm:mt-0 mt-4">© 2025 Loan Prediction —
+        <a href="https://github.com/Vishal120703" class="text-gray-300 ml-1 hover:text-indigo-400"
+          target="_blank">@Vishal120703</a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="text-gray-400 hover:text-indigo-400" href="#">🌐</a>
+        <a class="ml-3 text-gray-400 hover:text-indigo-400" href="#">🐦</a>
+        <a class="ml-3 text-gray-400 hover:text-indigo-400" href="#">💼</a>
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>

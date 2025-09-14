@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Loan Eligibility Model</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-gray-900 shadow-md">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2"
+          class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl font-bold tracking-wide">Loan Prediction</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a href="/" class="mr-5 hover:text-indigo-400 transition">Home</a>
+        <a href="/about" class="mr-5 hover:text-indigo-400 transition">About</a>
+        <a href="/predict" class="mr-5 hover:text-indigo-400 transition">Prediction</a>
+        <a href="https://github.com/Vishal120703/Blog_Web" target="_blank"
+          class="mr-5 hover:text-indigo-400 transition">Github</a>
+      </nav>
+      <button
+        class="ml-4 inline-flex items-center bg-indigo-600 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-700 rounded text-white text-sm shadow">
+        Get Started
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="text-center py-12 bg-gradient-to-r from-indigo-700 to-purple-700">
+    <h2 class="text-3xl font-bold mb-4">About the Loan Eligibility Model</h2>
+    <p class="max-w-2xl mx-auto text-gray-200">
+      This page explains each input feature used in our machine learning model, along with visual insights to help you understand how the model works.
+    </p>
+  </section>
+
+  <!-- Explanations -->
+  <section class="container mx-auto py-12 px-6 space-y-12">
+    <!-- Feature Card -->
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-xl font-semibold text-indigo-400">Credit Policy</h3>
+        <p class="text-gray-300 mt-2">Indicates whether the applicant meets the lending company’s credit standards. 1 = Follows credit policy, 0 = Does not.</p>
+      </div>
+      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg">
+        <span class="text-gray-500">[Graph Placeholder]</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-xl font-semibold text-indigo-400">Purpose</h3>
+        <p class="text-gray-300 mt-2">The reason for the loan (e.g., credit card, education, home improvement). Encoded as numbers (0–N).</p>
+      </div>
+      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg">
+        <span class="text-gray-500">[Pie Chart Placeholder]</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-xl font-semibold text-indigo-400">Interest Rate</h3>
+        <p class="text-gray-300 mt-2">Annual percentage rate applied on the loan amount. Higher rates increase repayment burden.</p>
+      </div>
+      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg">
+        <span class="text-gray-500">[Line Chart Placeholder]</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-xl font-semibold text-indigo-400">Log Annual Income</h3>
+        <p class="text-gray-300 mt-2">The natural log of the applicant’s annual income, used for normalization in the model.</p>
+      </div>
+      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg">
+        <span class="text-gray-500">[Bar Graph Placeholder]</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-xl font-semibold text-indigo-400">FICO Score</h3>
+        <p class="text-gray-300 mt-2">A credit score that ranges from 300–850. Higher scores indicate better creditworthiness.</p>
+      </div>
+      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg">
+        <span class="text-gray-500">[Histogram Placeholder]</span>
+      </div>
+    </div>
+
+    <!-- Add similar sections for other features like DTI, Revolving Balance, Inquiries, Gender, Married, etc. -->
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center py-6 mt-12">
+    <p class="text-gray-400">© 2025 Loan Prediction Project. All rights reserved.</p>
+  </footer>
+</body>
+</html>

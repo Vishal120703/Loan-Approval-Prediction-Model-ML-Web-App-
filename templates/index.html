@@ -1,0 +1,163 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Eligibility Prediction</title>
+</head>
+<body>
+    <h2>Loan Prediction Form</h2>
+    <form action="/predict" method="POST">
+        Credit Policy: <input type="number" name="credit_policy"><br><br>
+        Purpose (0–N): <input type="number" name="purpose"><br><br>
+        Interest Rate: <input type="text" name="int_rate"><br><br>
+        Installment: <input type="text" name="installment"><br><br>
+        Log Annual Income: <input type="text" name="log_annual_inc"><br><br>
+        DTI: <input type="text" name="dti"><br><br>
+        FICO Score: <input type="number" name="fico"><br><br>
+        Days with Credit Line: <input type="text" name="days_with_cr_line"><br><br>
+        Revolving Balance: <input type="text" name="revol_bal"><br><br>
+        Revolving Utilization: <input type="text" name="revol_util"><br><br>
+        Inquiries Last 6 Months: <input type="number" name="inq_last_6mths"><br><br>
+        Delinquencies Last 2 Years: <input type="number" name="delinq_2yrs"><br><br>
+        Public Records: <input type="number" name="pub_rec"><br><br>
+        Gender (1 = Male, 0 = Female): <input type="number" name="gender"><br><br>
+        Married (1 = Yes, 0 = No): <input type="number" name="married"><br><br>
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Eligibility Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* align top so it can scroll */
+      min-height: 100vh;
+      overflow-y: auto; /* enable vertical scroll */
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 35px;
+      border-radius: 12px;
+      box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 450px;
+      margin-bottom: 30px; /* so content doesn’t stick to bottom */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 12px;
+      display: block;
+      color: #444;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    input[type="number"]:focus,
+    input[type="text"]:focus {
+      border-color: #2575fc;
+      outline: none;
+      box-shadow: 0px 0px 6px rgba(37, 117, 252, 0.4);
+    }
+
+    .btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: #2575fc;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #1a5edc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Loan Eligibility Prediction</h2>
+    <form action="/predict" method="POST">
+      <label>Credit Policy:</label>
+      <input type="number" name="credit_policy" required>
+
+      <label>Purpose (0–N):</label>
+      <input type="number" name="purpose" required>
+
+      <label>Interest Rate:</label>
+      <input type="text" name="int_rate" required>
+
+      <label>Installment:</label>
+      <input type="text" name="installment" required>
+
+      <label>Log Annual Income:</label>
+      <input type="text" name="log_annual_inc" required>
+
+      <label>DTI:</label>
+      <input type="text" name="dti" required>
+
+      <label>FICO Score:</label>
+      <input type="number" name="fico" required>
+
+      <label>Days with Credit Line:</label>
+      <input type="text" name="days_with_cr_line" required>
+
+      <label>Revolving Balance:</label>
+      <input type="text" name="revol_bal" required>
+
+      <label>Revolving Utilization:</label>
+      <input type="text" name="revol_util" required>
+
+      <label>Inquiries Last 6 Months:</label>
+      <input type="number" name="inq_last_6mths" required>
+
+      <label>Delinquencies Last 2 Years:</label>
+      <input type="number" name="delinq_2yrs" required>
+
+      <label>Public Records:</label>
+      <input type="number" name="pub_rec" required>
+
+      <label>Gender (1 = Male, 0 = Female):</label>
+      <input type="number" name="gender" required>
+
+      <label>Married (1 = Yes, 0 = No):</label>
+      <input type="number" name="married" required>
+
+      <button type="submit" class="btn">Predict</button>
+    </form>
+  </div>
+</body>
+</html>
+
