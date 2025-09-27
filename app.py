@@ -26,10 +26,26 @@ def about():
 def predict():
     if request.method == 'POST':
         # Get data from form
+        x = float(request.form['int_rate'])
+        y = request.form['purpose']
+        if(y == "all_other"):
+            z = 1
+        elif (y=="credit_card"):
+            z = 2
+        elif (y=="debt_consolidation"):
+            z = 3
+        elif(y == "educational"):
+            z = 4
+        elif(y == "home_improvement"):
+            z = 5
+        else:
+            z = 6
+
         data = {
             'credit.policy': int(request.form['credit_policy']),
-            'purpose': int(request.form['purpose']),
-            'int.rate': float(request.form['int_rate']),
+            # 'purpose': int(request.form['purpose']),
+            'purpose': z,
+            'int.rate': x/100,
             'installment': float(request.form['installment']),
             'log.annual.inc': float(request.form['log_annual_inc']),
             'dti': float(request.form['dti']),
@@ -43,11 +59,14 @@ def predict():
             'Gender': int(request.form['gender']),
             'Married': int(request.form['married']),
         }
+        print(data)
 
         df = pd.DataFrame([data])
+        # print(df)
         scaled_data = scaler.transform(df)
         prediction = model.predict(scaled_data)[0]
         probability = model.predict_proba(scaled_data)[0][1]
+        print("prediction",prediction)
 
         return render_template('result.html',
                                prediction=prediction,
