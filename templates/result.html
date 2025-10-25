@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-900 text-gray-200"> -->
 
-  <!-- Navbar -->
+<!-- Navbar -->
 <!-- <header class="sticky top-0 z-50 bg-gray-900 shadow-md">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
       <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
@@ -37,41 +37,41 @@
       </button>
     </div>
   </header> -->
-  <!-- Result Section -->
-  <!-- <section class="container mx-auto px-6 py-12">
+<!-- Result Section -->
+<!-- <section class="container mx-auto px-6 py-12">
     <div class="bg-gray-800 rounded-2xl shadow-lg p-8 max-w-3xl mx-auto text-center"> -->
-      
-      <!-- Title -->
-      <!-- <h2 class="text-3xl font-bold text-indigo-400 mb-4">Prediction Result</h2>
+
+<!-- Title -->
+<!-- <h2 class="text-3xl font-bold text-indigo-400 mb-4">Prediction Result</h2>
       <p class="text-gray-400 mb-6">Based on the information you provided, our model predicts:</p> -->
 
-      <!-- Prediction -->
-      <!-- <p class="text-2xl font-semibold mb-4 
+<!-- Prediction -->
+<!-- <p class="text-2xl font-semibold mb-4 
                 {{ 'text-red-500' if prediction == 1 else 'text-green-400' }}">
         {{ '❌ Not Eligible' if prediction == 1 else '✅ Eligible' }}
       </p> -->
 
-      <!-- Probability -->
-      <!-- <p class="mb-6 text-gray-300">
+<!-- Probability -->
+<!-- <p class="mb-6 text-gray-300">
         <strong>Probability of you will not pay :</strong> 
         <span class="text-white">{{ probability }}%</span>
       </p> -->
 
-      <!-- Chart -->
-      <!-- <div class="flex justify-center mb-10">
+<!-- Chart -->
+<!-- <div class="flex justify-center mb-10">
         <canvas id="probChart" class="max-w-sm"></canvas>
       </div> -->
 
-      <!-- Feature Importance Placeholder -->
-      <!-- <div class="mt-8 text-left">
+<!-- Feature Importance Placeholder -->
+<!-- <div class="mt-8 text-left">
         <h3 class="text-xl font-semibold text-indigo-400 mb-3">Key Factors Influencing Prediction</h3>
         <div class="bg-gray-700 h-56 rounded-lg flex items-center justify-center">
           <span class="text-gray-500">[Feature Importance Graph Placeholder]</span>
         </div>
       </div> -->
 
-      <!-- Back Button -->
-      <!-- <div class="mt-10">
+<!-- Back Button -->
+<!-- <div class="mt-10">
         <a href="/predict" 
            class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-lg font-medium">
           🔄 Make Another Prediction
@@ -81,13 +81,13 @@
     </div>
   </section> -->
 
-  <!-- Footer -->
-  <!-- <footer class="bg-gray-800 text-center py-6 mt-12">
+<!-- Footer -->
+<!-- <footer class="bg-gray-800 text-center py-6 mt-12">
     <p class="text-gray-400">© 2025 Loan Prediction Project. All rights reserved.</p>
   </footer> -->
 
-  <!-- Chart Script -->
-  <!-- <script>
+<!-- Chart Script -->
+<!-- <script>
     const probability = {{ probability }};
     const fullyPaidProb = 100 - probability;
 
@@ -117,6 +117,7 @@
 
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,14 +131,18 @@
       .no-print {
         display: none;
       }
+
       body {
         background: white !important;
         color: black !important;
       }
-      .bg-gray-800, .bg-gray-700 {
+
+      .bg-gray-800,
+      .bg-gray-700 {
         background: white !important;
         color: black !important;
       }
+
       canvas {
         max-width: 100% !important;
         height: auto !important;
@@ -145,6 +150,7 @@
     }
   </style>
 </head>
+
 <body class="bg-gray-900 text-gray-200">
 
   <!-- Navbar -->
@@ -152,8 +158,8 @@
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
       <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-          stroke-linejoin="round" stroke-width="2"
-          class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
         <span class="ml-3 text-xl font-bold tracking-wide">Loan Prediction</span>
@@ -176,10 +182,33 @@
     </div>
   </header>
 
+  <!-- User Input Summary -->
+  <div class="mt-8 text-left">
+    <h3 class="text-xl font-semibold text-indigo-400 mb-3">User Input Summary</h3>
+    <div class="bg-gray-700 rounded-lg p-6 overflow-x-auto">
+      <table class="min-w-full text-sm text-gray-300">
+        <thead>
+          <tr class="text-indigo-400 border-b border-gray-600">
+            <th class="py-2 px-4 text-left">Feature</th>
+            <th class="py-2 px-4 text-left">Entered Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for key, value in inputs.items() %}
+          <tr class="border-b border-gray-600 hover:bg-gray-600/40">
+            <td class="py-2 px-4 font-medium">{{ key.replace('_', ' ').title() }}</td>
+            <td class="py-2 px-4">{{ value }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- Result Section -->
   <section class="container mx-auto px-6 py-12">
     <div class="bg-gray-800 rounded-2xl shadow-lg p-8 max-w-3xl mx-auto text-center">
-      
+
       <!-- Title -->
       <h2 class="text-3xl font-bold text-indigo-400 mb-4">Prediction Result</h2>
       <p class="text-gray-400 mb-6">Based on the information you provided, our model predicts:</p>
@@ -192,7 +221,7 @@
 
       <!-- Probability -->
       <p class="mb-6 text-gray-300">
-        <strong>Probability of you will not pay:</strong> 
+        <strong>Probability of you will not pay:</strong>
         <span class="text-white">{{ probability }}%</span>
       </p>
 
@@ -204,31 +233,24 @@
       <!-- Download Report Button -->
       <div class="mb-4 no-print">
         <a href="/download-report?prediction={{ prediction }}&probability={{ probability }}{% for key, value in inputs.items() %}&{{ key }}={{ value }}{% endfor %}"
-           class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg inline-block">
-           📄 Download Report
+          class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg inline-block">
+          📄 Download Report
         </a>
       </div>
 
       <!-- Print Button -->
       <div class="mb-6 no-print">
-        <button onclick="window.print()" 
-                class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg">
+        <button onclick="window.print()"
+          class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg">
           🖨️ Print Result
         </button>
       </div>
 
-      <!-- Feature Importance Placeholder -->
-      <div class="mt-8 text-left">
-        <h3 class="text-xl font-semibold text-indigo-400 mb-3">Key Factors Influencing Prediction</h3>
-        <div class="bg-gray-700 h-56 rounded-lg flex items-center justify-center">
-          <span class="text-gray-500">[Feature Importance Graph Placeholder]</span>
-        </div>
-      </div>
+
 
       <!-- Back Button -->
       <div class="mt-10 no-print">
-        <a href="/predict" 
-           class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-lg font-medium">
+        <a href="/predict" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-lg font-medium">
           🔄 Make Another Prediction
         </a>
       </div>
@@ -266,6 +288,5 @@
     });
   </script>
 </body>
+
 </html>
-
-
