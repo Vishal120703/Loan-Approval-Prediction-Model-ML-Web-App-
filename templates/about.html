@@ -53,11 +53,10 @@
     <!-- Feature Card -->
     <div class="grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <h3 class="text-xl font-semibold text-indigo-400">Credit Policy</h3>
-        <p class="text-gray-300 mt-2">Indicates whether the applicant meets the lending company’s credit standards. 1 =
-          Follows credit policy, 0 = Does not.</p>
+        <h3 class="text-xl font-semibold text-indigo-400">Loan Purpose and Public Records Analysis</h3>
+        <p class="text-gray-300 mt-2">These charts show how the purpose of the loan and public record count relate to loan repayment status. Most loans are taken for debt consolidation, followed by credit card purposes. Borrowers with fewer public records tend to have a better repayment history.</p>
       </div>
-      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg overflow-hidden">
+      <div class="bg-gray-800 h-63 flex items-center justify-center rounded-lg overflow-hidden">
         <img
           src="../static/output(1).png"
           alt="Credit Policy Image" class="w-full h-full object-cover">
@@ -66,51 +65,60 @@
 
     <div class="grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <h3 class="text-xl font-semibold text-indigo-400">Purpose</h3>
-        <p class="text-gray-300 mt-2">The reason for the loan (e.g., credit card, education, home improvement). Encoded
-          as numbers (0–N).</p>
+        <h3 class="text-xl font-semibold text-indigo-400">Income and Installment Distribution</h3>
+        <p class="text-gray-300 mt-2">This visualization displays the distribution of annual income and installment amounts among applicants. Income follows a normal-like distribution, while installment amounts are right-skewed — meaning most applicants have moderate monthly payments.</p>
       </div>
-      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg overflow-hidden">
+      <div class="bg-gray-800 h-63 flex items-center justify-center rounded-lg overflow-hidden">
         <img
-          src="../static/output(1).png"
+          src="../static/output(2).png"
           alt="Credit Policy Image" class="w-full h-full object-cover">
       </div>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <h3 class="text-xl font-semibold text-indigo-400">Interest Rate</h3>
-        <p class="text-gray-300 mt-2">Annual percentage rate applied on the loan amount. Higher rates increase repayment
-          burden.</p>
+        <h3 class="text-xl font-semibold text-indigo-400">Relationship Between Income, Installment, and Repayment</h3>
+        <p class="text-gray-300 mt-2">These boxplots compare installment and log(annual income) for applicants who fully repaid their loans vs. those who didn’t. The distribution is similar across both groups, indicating these features alone don’t strongly determine repayment ability.</p>
       </div>
-      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg overflow-hidden">
+      <div class="bg-gray-800 h-63 flex items-center justify-center rounded-lg overflow-hidden">
         <img
-          src="../static/output(1).png"
+          src="../static/output(3).png"
           alt="Credit Policy Image" class="w-full h-full object-cover">
       </div>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <h3 class="text-xl font-semibold text-indigo-400">Log Annual Income</h3>
-        <p class="text-gray-300 mt-2">The natural log of the applicant’s annual income, used for normalization in the
-          model.</p>
+        <h3 class="text-xl font-semibold text-indigo-400">Feature Correlation Heatmap</h3>
+        <p class="text-gray-300 mt-2">This heatmap highlights correlations between all numeric features. Since no pairs show strong correlation (r > 0.8), it suggests that each feature contributes unique information to the model.</p>
       </div>
-      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg overflow-hidden">
+      <div class="bg-gray-800 h-63 flex items-center justify-center rounded-lg overflow-hidden">
         <img
-          src="../static/output(1).png"
+          src="../static/output(4).png"
+          alt="Credit Policy Image" class="w-full h-full object-cover">
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-xl font-semibold text-indigo-400">Model Performance – Confusion Matrix</h3>
+        <p class="text-gray-300 mt-2">The confusion matrix summarizes model predictions. It shows how well the model differentiates between applicants who will repay (label 0) and those who won’t (label 1). The model correctly classifies most fully-paid cases but still has room to improve in predicting defaults.</p>
+      </div>
+      <div class="bg-gray-800 h-63 flex items-center justify-center rounded-lg overflow-hidden">
+        <img
+          src="../static/output(5).png"
           alt="Credit Policy Image" class="w-full h-full object-cover">
       </div>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <h3 class="text-xl font-semibold text-indigo-400">FICO Score</h3>
-        <p class="text-gray-300 mt-2">A credit score that ranges from 300–850. Higher scores indicate better
-          creditworthiness.</p>
+        <h3 class="text-xl font-semibold text-indigo-400">Loan Repayment Status Distribution</h3>
+        <p class="text-gray-300 mt-2">This pie chart shows that 84% of applicants fully repaid their loans, while 16% defaulted. The imbalance indicates that the dataset is skewed toward successful repayments, a key factor to consider during model training.</p>
       </div>
-      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg">
-        <span class="text-gray-500">[Histogram Placeholder]</span>
+      <div class="bg-gray-800 h-63 flex items-center justify-center rounded-lg overflow-hidden">
+        <img
+          src="../static/output.png"
+          alt="Credit Policy Image" class="w-full h-full object-cover">
       </div>
     </div>
 
@@ -128,9 +136,9 @@
           target="_blank">@Vishal120703</a>
       </p>
       <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-        <a class="text-gray-400 hover:text-indigo-400" href="#">🌐</a>
+        <!-- <a class="text-gray-400 hover:text-indigo-400" href="#">🌐</a>
         <a class="ml-3 text-gray-400 hover:text-indigo-400" href="#">🐦</a>
-        <a class="ml-3 text-gray-400 hover:text-indigo-400" href="#">💼</a>
+        <a class="ml-3 text-gray-400 hover:text-indigo-400" href="#">💼</a> -->
       </span>
     </div>
   </footer>
