@@ -1,0 +1,353 @@
+--- old app.py
+
+# from flask import Flask, render_template, request
+# import numpy as np
+# import pandas as pd
+# import pickle
+
+# app = Flask(__name__)
+
+# # Load your trained model and scaler
+# model = pickle.load(open('model.pkl', 'rb'))
+# scaler = pickle.load(open('scaler.pkl', 'rb'))
+
+# @app.route('/')
+# def home():
+#     return render_template('home.html')
+
+# @app.route('/predict', methods = ['GET'])
+# def prediction():
+#     return render_template('prediction.html')
+
+# @app.route('/about', methods = ['GET'])
+# def about():
+#     return render_template('about.html')
+
+
+# @app.route('/predict', methods=['POST'])
+# def predict():
+#     if request.method == 'POST':
+#         # Get data from form
+#         x = float(request.form['int_rate'])
+#         y = request.form['purpose']
+#         if(y == "all_other"):
+#             z = 1
+#         elif (y=="credit_card"):
+#             z = 2
+#         elif (y=="debt_consolidation"):
+#             z = 3
+#         elif(y == "educational"):
+#             z = 4
+#         elif(y == "home_improvement"):
+#             z = 5
+#         else:
+#             z = 6
+
+#         data = {
+#             'credit.policy': int(request.form['credit_policy']),
+#             # 'purpose': int(request.form['purpose']),
+#             'purpose': z,
+#             'int.rate': x/100,
+#             'installment': float(request.form['installment']),
+#             'log.annual.inc': float(request.form['log_annual_inc']),
+#             'dti': float(request.form['dti']),
+#             'fico': int(request.form['fico']),
+#             'days.with.cr.line': float(request.form['days_with_cr_line']),
+#             'revol.bal': float(request.form['revol_bal']),
+#             'revol.util': float(request.form['revol_util']),
+#             'inq.last.6mths': int(request.form['inq_last_6mths']),
+#             'delinq.2yrs': int(request.form['delinq_2yrs']),
+#             'pub.rec': int(request.form['pub_rec']),
+#             'Gender': int(request.form['gender']),
+#             'Married': int(request.form['married']),
+#         }
+#         print(data)
+
+#         df = pd.DataFrame([data])
+#         # print(df)
+#         scaled_data = scaler.transform(df)
+#         prediction = model.predict(scaled_data)[0]
+#         probability = model.predict_proba(scaled_data)[0][1]
+#         print("prediction",prediction)
+
+#         return render_template('result.html',
+#                                prediction=prediction,
+#                                probability=round(probability * 100, 2))
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+
+
+
+# from flask import Flask, render_template, request, send_file
+# import numpy as np
+# import pandas as pd
+# import pickle
+# import io
+# from reportlab.pdfgen import canvas
+
+# app = Flask(__name__)
+
+# # Load your trained model and scaler
+# model = pickle.load(open('model.pkl', 'rb'))
+# scaler = pickle.load(open('scaler.pkl', 'rb'))
+
+# @app.route('/')
+# def home():
+#     return render_template('home.html')
+
+# @app.route('/predict', methods=['GET'])
+# def prediction():
+#     return render_template('prediction.html')
+
+# @app.route('/about', methods=['GET'])
+# def about():
+#     return render_template('about.html')
+
+# @app.route('/predict', methods=['POST'])
+# def predict():
+#     if request.method == 'POST':
+#         # Get form data
+#         raw_data = request.form.to_dict()
+
+#         # Map purpose to integer
+#         purpose_map = {
+#             "all_other": 1,
+#             "credit_card": 2,
+#             "debt_consolidation": 3,
+#             "educational": 4,
+#             "home_improvement": 5
+#         }
+#         purpose_val = purpose_map.get(raw_data.get('purpose'), 6)
+
+#         # Prepare input data for model
+#         data = {
+#             'credit.policy': int(raw_data['credit_policy']),
+#             'purpose': purpose_val,
+#             'int.rate': float(raw_data['int_rate']) / 100,
+#             'installment': float(raw_data['installment']),
+#             'log.annual.inc': float(raw_data['log_annual_inc']),
+#             'dti': float(raw_data['dti']),
+#             'fico': int(raw_data['fico']),
+#             'days.with.cr.line': float(raw_data['days_with_cr_line']),
+#             'revol.bal': float(raw_data['revol_bal']),
+#             'revol.util': float(raw_data['revol_util']),
+#             'inq.last.6mths': int(raw_data['inq_last_6mths']),
+#             'delinq.2yrs': int(raw_data['delinq_2yrs']),
+#             'pub.rec': int(raw_data['pub_rec']),
+#             'Gender': int(raw_data['gender']),
+#             'Married': int(raw_data['married']),
+#         }
+
+#         df = pd.DataFrame([data])
+#         scaled_data = scaler.transform(df)
+
+#         # Prediction
+#         prediction = model.predict(scaled_data)[0]
+#         probability = model.predict_proba(scaled_data)[0][1]
+
+#         # Pass prediction, probability, and input data to template
+#         return render_template(
+#             'result.html',
+#             prediction=prediction,
+#             probability=round(probability * 100, 2),
+#             inputs=data  # send cleaned data dictionary
+#         )
+
+# # Route to download PDF report
+# @app.route('/download-report')
+# def download_report():
+#     # Get all input data and prediction from query parameters
+#     prediction = request.args.get('prediction', 'N/A')
+#     probability = request.args.get('probability', 'N/A')
+
+#     # Collect all other input fields dynamically
+#     input_fields = {key: request.args.get(key, 'N/A') for key in [
+#         'credit.policy', 'purpose', 'int.rate', 'installment', 'log.annual.inc', 'dti',
+#         'fico', 'days.with.cr.line', 'revol.bal', 'revol.util', 'inq.last.6mths',
+#         'delinq.2yrs', 'pub.rec', 'Gender', 'Married'
+#     ]}
+
+#     # Create PDF in memory
+#     buffer = io.BytesIO()
+#     p = canvas.Canvas(buffer)
+#     p.setFont("Helvetica-Bold", 18)
+#     p.drawString(180, 800, "Loan Prediction Report")
+#     p.setFont("Helvetica", 12)
+
+#     y = 760
+#     for key, value in {**input_fields,
+#                        "Prediction Result": prediction,
+#                        "Probability (%)": probability
+#                        }.items():
+#         p.drawString(100, y, f"{key}: {value}")
+#         y -= 20
+
+#     p.showPage()
+#     p.save()
+#     buffer.seek(0)
+
+#     return send_file(buffer, as_attachment=True,
+#                      download_name="loan_prediction_report.pdf",
+#                      mimetype='application/pdf')
+
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+
+
+
+
+
+
+--- old result.html
+
+
+<!-- <!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result | Loan Eligibility</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-200"> -->
+
+<!-- Navbar -->
+<!-- <header class="sticky top-0 z-50 bg-gray-900 shadow-md">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2"
+          class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl font-bold tracking-wide">Loan Prediction</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a href="/" class="mr-5 hover:text-indigo-400 transition">Home</a>
+        <a href="/about" class="mr-5 hover:text-indigo-400 transition">About</a>
+        <a href="/predict" class="mr-5 hover:text-indigo-400 transition">Prediction</a>
+        <a href="https://github.com/Vishal120703/Loan-Approval-Prediction-Model-ML-Web-App-" target="_blank"
+          class="mr-5 hover:text-indigo-400 transition">Github</a>
+      </nav>
+      <button
+        class="ml-4 inline-flex items-center bg-indigo-600 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-700 rounded text-white text-sm shadow">
+        Get Started
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </header> -->
+<!-- Result Section -->
+<!-- <section class="container mx-auto px-6 py-12">
+    <div class="bg-gray-800 rounded-2xl shadow-lg p-8 max-w-3xl mx-auto text-center"> -->
+
+<!-- Title -->
+<!-- <h2 class="text-3xl font-bold text-indigo-400 mb-4">Prediction Result</h2>
+      <p class="text-gray-400 mb-6">Based on the information you provided, our model predicts:</p> -->
+
+<!-- Prediction -->
+<!-- <p class="text-2xl font-semibold mb-4 
+                {{ 'text-red-500' if prediction == 1 else 'text-green-400' }}">
+        {{ '❌ Not Eligible' if prediction == 1 else '✅ Eligible' }}
+      </p> -->
+
+<!-- Probability -->
+<!-- <p class="mb-6 text-gray-300">
+        <strong>Probability of you will not pay :</strong> 
+        <span class="text-white">{{ probability }}%</span>
+      </p> -->
+
+<!-- Chart -->
+<!-- <div class="flex justify-center mb-10">
+        <canvas id="probChart" class="max-w-sm"></canvas>
+      </div> -->
+
+<!-- Feature Importance Placeholder -->
+<!-- <div class="mt-8 text-left">
+        <h3 class="text-xl font-semibold text-indigo-400 mb-3">Key Factors Influencing Prediction</h3>
+        <div class="bg-gray-700 h-56 rounded-lg flex items-center justify-center">
+          <span class="text-gray-500">[Feature Importance Graph Placeholder]</span>
+        </div>
+      </div> -->
+
+<!-- Back Button -->
+<!-- <div class="mt-10">
+        <a href="/predict" 
+           class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-lg font-medium">
+          🔄 Make Another Prediction
+        </a>
+      </div>
+
+    </div>
+  </section> -->
+
+<!-- Footer -->
+<!-- <footer class="bg-gray-800 text-center py-6 mt-12">
+    <p class="text-gray-400">© 2025 Loan Prediction Project. All rights reserved.</p>
+  </footer> -->
+
+<!-- Chart Script -->
+<!-- <script>
+    const probability = {{ probability }};
+    const fullyPaidProb = 100 - probability;
+
+    const ctx = document.getElementById('probChart');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Not Fully Paid', 'Fully Paid'],
+        datasets: [{
+          data: [probability, fullyPaidProb],
+          backgroundColor: ['#ef4444', '#22c55e'], // red & green
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { color: '#d1d5db' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html> -->
+
+
+--- old index.html
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Eligibility Prediction</title>
+</head>
+<body>
+    <h2>Loan Prediction Form</h2>
+    <form action="/predict" method="POST">
+        Credit Policy: <input type="number" name="credit_policy"><br><br>
+        Purpose (0–N): <input type="number" name="purpose"><br><br>
+        Interest Rate: <input type="text" name="int_rate"><br><br>
+        Installment: <input type="text" name="installment"><br><br>
+        Log Annual Income: <input type="text" name="log_annual_inc"><br><br>
+        DTI: <input type="text" name="dti"><br><br>
+        FICO Score: <input type="number" name="fico"><br><br>
+        Days with Credit Line: <input type="text" name="days_with_cr_line"><br><br>
+        Revolving Balance: <input type="text" name="revol_bal"><br><br>
+        Revolving Utilization: <input type="text" name="revol_util"><br><br>
+        Inquiries Last 6 Months: <input type="number" name="inq_last_6mths"><br><br>
+        Delinquencies Last 2 Years: <input type="number" name="delinq_2yrs"><br><br>
+        Public Records: <input type="number" name="pub_rec"><br><br>
+        Gender (1 = Male, 0 = Female): <input type="number" name="gender"><br><br>
+        Married (1 = Yes, 0 = No): <input type="number" name="married"><br><br>
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html> -->
+
