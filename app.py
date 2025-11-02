@@ -92,6 +92,7 @@ def predict():
             inputs=display_inputs
         )
 
+
 # Route to download PDF report
 @app.route('/download-report')
 def download_report():
@@ -131,4 +132,8 @@ def download_report():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
 
