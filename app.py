@@ -45,7 +45,7 @@ def predict():
             'purpose': purpose_val,
             'int.rate': float(raw_data['int_rate']) / 100,
             'installment': float(raw_data['installment']),
-            'log.annual.inc': float(raw_data['log_annual_inc']),
+            'log.annual.inc': float(np.log(float(raw_data['log_annual_inc']))),
             'dti': float(raw_data['dti']),
             'fico': int(raw_data['fico']),
             'days.with.cr.line': float(raw_data['days_with_cr_line']),
